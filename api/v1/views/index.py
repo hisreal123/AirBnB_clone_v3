@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """
-create a route /status
+Create a route /status
 """
-from api.v1.views import app_views
 from flask import jsonify
 from models import storage
+from api.v1.views import app_views
 
 @app_views.route('/status', methods=['GET'])
 def get_status():
@@ -13,7 +13,7 @@ def get_status():
 
 @app_views.route('/stats', methods=['GET'])
 def get_stats():
-    """Returns stats(number of objects by type)"""
+    """Returns stats (number of objects by type)"""
     stats = {
         "amenities": storage.count("Amenity"),
         "cities": storage.count("City"),
@@ -23,3 +23,6 @@ def get_stats():
         "users": storage.count("User")
     }
     return jsonify(stats), 200
+
+if __name__ == "__main__":
+    pass
