@@ -10,7 +10,8 @@ from models.state import State  # Ensure State model is imported
 from api.v1.views import app_views
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities',
+                 methods=['GET'], strict_slashes=False)
 def cities_all(state_id):
     """Returns a list of all City objects linked to a given State."""
     state = storage.get("State", state_id)
@@ -20,7 +21,8 @@ def cities_all(state_id):
     return jsonify(cities_all)
 
 
-@app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/cities/<city_id>',
+                 methods=['GET'], strict_slashes=False)
 def city_get(city_id):
     """Handles GET method for a single City."""
     city = storage.get("City", city_id)
@@ -29,7 +31,8 @@ def city_get(city_id):
     return jsonify(city.to_dict())
 
 
-@app_views.route('/cities/<city_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/cities/<city_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def city_delete(city_id):
     """Handles DELETE method for a single City."""
     city = storage.get("City", city_id)
@@ -40,7 +43,8 @@ def city_delete(city_id):
     return jsonify({}), 200
 
 
-@app_views.route('/states/<state_id>/cities', methods=['POST'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities',
+                 methods=['POST'], strict_slashes=False)
 def city_post(state_id):
     """Handles POST method to create a new City."""
     state = storage.get("State", state_id)
@@ -57,7 +61,8 @@ def city_post(state_id):
     return jsonify(city.to_dict()), 201
 
 
-@app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/cities/<city_id>',
+                 methods=['PUT'], strict_slashes=False)
 def city_put(city_id):
     """Handles PUT method to update a City."""
     city = storage.get("City", city_id)
